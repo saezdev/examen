@@ -59,6 +59,7 @@ class SeguridadController extends AbstractController
     #[Route('/private/test_private', name: 'test_private')]
     public function test_private()
     {
-        return new Response( "Parte Private" );
+        // return new Response( "Parte Private" );
+        return $this->redirectToRoute('app_elecciones');
     }
 }

@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello EleccionesController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<table>
+
+<thead>
+    <tr>
+        <th>MESA</th>
+        <th>CENTRO</th>
+        <th>LOCALIDAD</th>
+    </tr>
+</thead>
+<tbody>
+
+<div class="container-fluid">
+    <h1>Paginación con KnpPaginator</h1>
+ 
+    {# total items count #}
+    <div class="count">
+        <span class="label label-primary">
+            Entradas en total: {{ pagination.getTotalItemCount }}
+        </span>
+    </div>
+    <br/>
+    <table class="table table-bordered">
+ 
+        {# table body #}
+        {% for item in pagination %}
+            <tr {% if loop.index is odd %}class="color"{% endif %}>
+                <td>{{ item.id }}</td>
+                <td>{{ item.centro }}</td>
+                <td>{{ item.localidad }}</td>
+                <td><a href="{{ path('app_mesas_datos', {'id': item.id}) }}">Datos</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    {# display navigation #}
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+</div>
+    {# {% for item in mesas %}
+    <tr>
+        <td>{{item.id}}</td>
+        <td>{{item.centro}}</td>
+        <td>{{item.localidad}}</td>
+        <td><a href="{{ path('app_mesas_datos', {'id': item.id}) }}">Datos</a></td>
+    </tr>
+    {% endfor %} #}
+</tbody>
+
+</table>
+{% endblock %}

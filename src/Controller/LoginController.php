@@ -26,4 +26,12 @@ public function index(AuthenticationUtils $authenticationUtils): Response
 		'error'         => $error,
 	  ]);
   }
+
+  #[Route('/logout', name: 'app_logout')]
+
+public function logout(AuthenticationUtils $authenticationUtils): Response
+  {
+	return $this->redirect('app_login');
+  }
+
 }
